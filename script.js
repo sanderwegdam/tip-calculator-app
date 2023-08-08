@@ -8,8 +8,7 @@ const billZero = document.getElementById("billZero");
 const only2decimals = document.getElementById("only2decimals");
 const numberOfPeopleZero = document.getElementById("numberOfPeopleZero");
 
-function checkInput() { 
-    
+function checkInput() {    
     document.querySelector(".tip-amount-value").innerHTML = "0.00";
  
     if(bill.value < 1){  
