@@ -287,13 +287,13 @@ button.reset:hover{
     .container {
         display: flex;
         flex-direction: column;    
-        width: 485px;
+        width: 480px;
         height: 1000px;  
     }
 
     .wrapper { 
         display: flex;
-        width: 420px;
+        width: 360px;
         flex-direction: column;
         height: 900px;
     } 
