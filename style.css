@@ -363,7 +363,7 @@ button.reset:hover {
     }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1441px) {
     .container {
         display: flex;
         flex-direction: column;
