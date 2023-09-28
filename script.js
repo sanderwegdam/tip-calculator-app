@@ -11,30 +11,34 @@ const numberOfPeopleZero = document.getElementById("numberOfPeopleZero");
 function checkInput() {    
     document.querySelector(".tip-amount-value").innerHTML = "0.00";
  
-    if(bill.value < 1){  
+    if(bill.value == 0){
+        only2decimals.innerHTML = "";
         billZero.innerHTML = "can't be zero";
         bill.style.borderColor = "red";
     } else {
         if(bill.value == ""){
             bill.style.borderColor = "";
-            billZero.innerHTML = ""; 
+            billZero.innerHTML = "";
             console.log("ERROR: No number was input.");
         }
-        else{
+       
             bill.style.borderColor = "";
+            billZero.innerHTML = "";
             console.log("INFO: Number received, processing..");
             var regex = /^\d*(\.\d{0,2})?$/;        
             if(regex.test(bill.value)){ 
-                billZero.innerHTML = "";  
+                billZero.innerHTML = "";
                 calculate();                       
             }
             else {     
-                if(!regex.test(bill.value)){          
-                only2decimals.innerHTML = "only 2 decimals";               
+                if(!regex.test(bill.value)){
+                billZero.innerHTML = "";
+                only2decimals.innerHTML = "only 2 decimals";
+                bill.style.borderColor = "red";
                 calculate();
-                }                            
-            }  
-        }            
+                }
+            }
+
     }  
 
     if(!isNaN(bill.value)){
@@ -56,7 +60,7 @@ function checkInput() {
     }
 }
 
-function calculate(){  
+function calculate(){
     const tipAmountValue = document.querySelector(".tip-amount-value").innerHTML;
     const amount = (parseFloat(bill.value) / parseFloat(numberOfPeople.value) + parseFloat(tipAmountValue)); 
     console.log("check = " + typeof amount);      
@@ -64,7 +68,7 @@ function calculate(){
         document.querySelector(".total-person-value").innerHTML = "0.00";
     }
     else{
-        document.querySelector(".total-person-value").innerHTML = amount.toFixed(2); 
+        document.querySelector(".total-person-value").innerHTML = amount.toFixed(2);
     }  
 }
 
@@ -101,9 +105,10 @@ function percentage(percentage){
     }     
 }
 
-function checkDecimals(bill){
+function checkDecimals(billValue){
     only2decimals.innerHTML= "";
-    document.getElementById("bill").value = parseFloat(bill).toFixed(2);     
+    bill.style.borderColor = "";
+    document.getElementById("bill").value = parseFloat(billValue).toFixed(2);
 }
 
 function reset(){    
