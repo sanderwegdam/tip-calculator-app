@@ -10,7 +10,7 @@ const numberOfPeopleZero = document.getElementById("numberOfPeopleZero");
 
 function checkInput() {    
     document.querySelector(".tip-amount-value").innerHTML = "0.00";
- 
+
     if(bill.value == 0){
         only2decimals.innerHTML = "";
         billZero.innerHTML = "can't be zero";
@@ -42,6 +42,7 @@ function checkInput() {
     }  
 
     if(!isNaN(bill.value)){
+        const customPercentage = document.querySelector(".custom").value = "";
     if(numberOfPeople.value < 1){
         numberOfPeopleZero.innerHTML = "can't be zero";
         numberOfPeople.style.borderColor = "red";
@@ -52,7 +53,8 @@ function checkInput() {
             document.querySelector(".total-person-value").innerHTML = "0.00"; 
         }
     }
-        else{            
+        else{
+
             numberOfPeopleZero.innerHTML = "";
             numberOfPeople.style.borderColor = "";
             numberOfPeople.style.outline = "none";
@@ -72,11 +74,11 @@ function calculate(){
     }  
 }
 
-function inputPercentage() {  
+function inputPercentage() {
     const newBill = bill.value;
     const customPercentage = document.querySelector(".custom").value;
     const numberValue = document.querySelector("#number").value;
-    if(numberValue > 0){        
+    if(numberValue > 0){
     console.log(customPercentage);
     console.log(newBill);
     const billCustomTip = (customPercentage * newBill / 100) / numberValue;
@@ -90,7 +92,8 @@ function inputPercentage() {
     } 
 }
 
-function percentage(percentage){ 
+function percentage(percentage){
+    const customPercentage = document.querySelector(".custom").value = "";
     const billValue = document.querySelector("#bill").value;  
     const numberValue = document.querySelector("#number").value;
     if(numberValue > 0){
