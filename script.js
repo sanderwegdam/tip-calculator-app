@@ -125,3 +125,9 @@ function reset(){
     bill.style.borderColor = "";
     numberOfPeople.style.borderColor = "";
 }
+
+function limitInputLength(inputElement, maxLength) {
+    if (inputElement.value.length > maxLength) {
+        inputElement.value = inputElement.value.slice(0, maxLength);
+    }
+}
