@@ -181,7 +181,7 @@ button:focus {
 }
 
 .zero.label-bill.only2decimals {
-    margin-left: 180px;
+    margin-left: 173px;
 }
 
 .right-wrapper {
@@ -311,10 +311,10 @@ button.reset:hover {
         justify-content: space-around;
     }
 
-    .zero.label-bill {
+    .zero.label-bill, .zero.label-number {
         position: absolute;
         margin-top: 0px;
-        margin-left: 200px;
+        margin-left: 190px;
         color: red;
         width: 300px;
     }
@@ -324,10 +324,7 @@ button.reset:hover {
     }
 
     .zero.label-number {
-        position: absolute;
-        color: red;
-        margin-left: 200px;
-        margin-top: 310px;
+        margin-top: 320px;
     }
 
     .label-number {
@@ -381,19 +378,16 @@ button.reset:hover {
         padding: 50px;
     }
 
-    .zero.label-bill {
+    .zero.label-bill, .zero.label-number {
         position: absolute;
         margin-top: 0px;
-        margin-left: 200px;
+        margin-left: 190px;
         color: red;
         width: 300px;
     }
 
     .zero.label-number {
-        position: absolute;
-        color: red;
-        margin-left: 200px;
-        margin-top: 235px;
+        margin-top: 240px;
     }
 
     .label-bill+input {
