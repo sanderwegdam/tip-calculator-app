@@ -55,7 +55,6 @@ p {
     display: flex;
     background-color: white;
     border-radius: 30px;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -400,8 +399,6 @@ button.reset:hover {
         flex-wrap: wrap;
         gap: 15px;
     }
-
-    .zero .label-bill {}
 
     .label-number+input {
         width: 320px;
