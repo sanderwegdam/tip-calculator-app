@@ -122,6 +122,17 @@ button:hover {
     cursor: pointer;
 }
 
+button.reset:hover {
+    background-color: var(--Light-grayish-cyan);
+    cursor: pointer;
+}
+
+button.reset:focus, button.reset:active {
+    background-color: hsl(183.13deg 78.69% 23.92%);
+    color: var(--Very-dark-cyan);
+    cursor: pointer;
+}
+
 button:focus, button:active {
     background-color: var(--Strong-cyan);
     color: var(--Very-dark-cyan);
@@ -262,18 +273,12 @@ button.reset {
     justify-content: center;
     display: flex;
     align-items: center;
-    background-color: hsl(183, 100%, 25%);
+    background-color: var(--Strong-cyan);
     margin-top: 60px;
     border: none;
     color: var(--Very-dark-cyan);
     font-size: 20px;
 }
-
-button.reset:hover {
-    background-color: var(--Strong-cyan);
-    cursor: pointer;
-}
-
 
 @media only screen and (max-width: 1440px) {
     .header {
