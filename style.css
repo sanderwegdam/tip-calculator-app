@@ -228,11 +228,6 @@ button:focus, button:active {
     flex-direction: column;
     justify-content: space-between;
     padding-inline: 20px;
-    margin-left: 0px;
-}
-
-.right-tip h1 {
-    margin: 0px;
 }
 
 .tip-amount {
@@ -319,6 +314,12 @@ button.reset {
 
     .right-container {
         width: 280px;
+    }
+
+    .right-tip {
+        font-size: 16px;
+        margin-top: 15px;
+        height: auto;
     }
 
     .zero.label-bill {
@@ -431,5 +432,9 @@ button.reset {
 
     .right-container {
         width: 300px;
+    }
+
+    .right-tip {
+        font-size: 24px;
     }
 }
