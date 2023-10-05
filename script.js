@@ -38,7 +38,6 @@ function checkInput() {
                 calculate();
                 }
             }
-
     }  
 
     if(!isNaN(bill.value)){
@@ -53,8 +52,7 @@ function checkInput() {
             document.querySelector(".total-person-value").innerHTML = "0.00"; 
         }
     }
-        else{
-
+        else {
             numberOfPeopleZero.innerHTML = "";
             numberOfPeople.style.borderColor = "";
             numberOfPeople.style.outline = "none";
@@ -71,8 +69,7 @@ function calculate(){
     }
     else{
         document.querySelector(".total-person-value").innerHTML = amount.toFixed(2);
-        adjustContainerSize()
-    }  
+    }
 }
 
 function inputPercentage() {
@@ -132,30 +129,3 @@ function limitInputLength(inputElement, maxLength) {
         inputElement.value = inputElement.value.slice(0, maxLength);
     }
 }
-
-// function adjustContainerSize() {
-//     const container = document.querySelector('.right-wrapper');
-//     const numbers = document.querySelector('.right-tip');
-
-//     // Calculate the content width (scrollWidth)
-//     const contentWidth = numbers.scrollWidth;
-    
-//     // Calculate the desired container width by adding your initial padding
-//     const desiredContainerWidth = contentWidth + 10; // 10px is your initial padding
-
-//     // Get the current container width
-//     const currentContainerWidth = container.clientWidth;
-
-//     console.log('contentWidth:', contentWidth);
-//     console.log('desiredContainerWidth:', desiredContainerWidth);
-//     console.log('currentContainerWidth:', currentContainerWidth);
-
-//     // Check if the desired container width is greater than the current width
-//     if (desiredContainerWidth > currentContainerWidth) {
-//         container.style.width = desiredContainerWidth + 'px';
-//     }
-    
-//     // Update the padding
-//     const newPadding = contentWidth + 10 + 'px'; // 10px is your initial padding
-//     numbers.style.paddingRight = newPadding;
-// }

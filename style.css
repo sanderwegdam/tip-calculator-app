@@ -200,8 +200,12 @@ button:focus, button:active {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     column-gap: 100px;
     border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+
 }
 
 .right-container {
@@ -216,12 +220,15 @@ button:focus, button:active {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex: 1 0 100px;
 }
 
 .right-tip {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-inline: 20px;
+    margin-left: 0px;
 }
 
 .right-tip h1 {
@@ -304,8 +311,7 @@ button.reset {
 
     .right-wrapper {
         width: 320px;
-        height: 280px;
-        padding: 50px;
+        height: 320px;
         justify-content: center;
         display: flex;
         align-items: center;
@@ -313,23 +319,25 @@ button.reset {
 
     .right-container {
         width: 280px;
-        justify-content: space-around;
     }
 
-    .zero.label-bill, .zero.label-number {
+    .zero.label-bill {
         position: absolute;
         margin-top: 0px;
         margin-left: 190px;
         color: red;
-        width: 300px;
-    }
-
-    .label-bill+input {
-        width: 320px;
     }
 
     .zero.label-number {
-        margin-top: 320px;
+        position: absolute;
+        margin-top: 322px;
+        margin-left: 190px;
+        color: red;
+    }
+
+
+    .label-bill+input {
+        width: 320px;
     }
 
     .label-number {
@@ -419,5 +427,9 @@ button.reset {
         padding: 50px;
         height: 430px;
         margin-left: -80px;
+    }
+
+    .right-container {
+        width: 300px;
     }
 }
