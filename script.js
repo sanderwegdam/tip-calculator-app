@@ -8,29 +8,21 @@ const billZero = document.getElementById("billZero");
 const only2decimals = document.getElementById("only2decimals");
 const numberOfPeopleZero = document.getElementById("numberOfPeopleZero");
 
-function checkInput() {    
-    document.querySelector(".tip-amount-value").innerHTML = "0.00";
-
+function checkInput() {
     if(bill.value == 0){
         only2decimals.innerHTML = "";
         billZero.innerHTML = "can't be zero";
         bill.style.borderColor = "red";
     } else {
-        if(bill.value == ""){
-            bill.style.borderColor = "";
-            billZero.innerHTML = "";
-            console.log("ERROR: No number was input.");
-        }
-       
             bill.style.borderColor = "";
             billZero.innerHTML = "";
             console.log("INFO: Number received, processing..");
-            var regex = /^\d*(\.\d{0,2})?$/;        
-            if(regex.test(bill.value)){ 
+            var regex = /^\d*(\.\d{0,2})?$/;
+            if(regex.test(bill.value)){
                 billZero.innerHTML = "";
-                calculate();                       
+                calculate();
             }
-            else {     
+            else {
                 if(!regex.test(bill.value)){
                 billZero.innerHTML = "";
                 only2decimals.innerHTML = "only 2 decimals";
@@ -38,31 +30,23 @@ function checkInput() {
                 calculate();
                 }
             }
-    }  
+    }
 
-    if(!isNaN(bill.value)){
-        const customPercentage = document.querySelector(".custom").value = "";
     if(numberOfPeople.value < 1){
         numberOfPeopleZero.innerHTML = "can't be zero";
         numberOfPeople.style.borderColor = "red";
-        if(isNaN(numberOfPeople.value)){
-            document.querySelector(".total-person-value").innerHTML = "0.00"; 
-        }
-        else{
-            document.querySelector(".total-person-value").innerHTML = "0.00"; 
-        }
     }
         else {
             numberOfPeopleZero.innerHTML = "";
             numberOfPeople.style.borderColor = "";
             numberOfPeople.style.outline = "none";
         }
-    }
+        inputPercentage();
 }
 
 function calculate(){
     const tipAmountValue = document.querySelector(".tip-amount-value").innerHTML;
-    const amount = (parseFloat(bill.value) / parseFloat(numberOfPeople.value) + parseFloat(tipAmountValue)); 
+    const amount = (parseFloat(bill.value) / parseFloat(numberOfPeople.value) + parseFloat(tipAmountValue));
     console.log("check = " + typeof amount);      
     if(isNaN(amount)){
         document.querySelector(".total-person-value").innerHTML = "0.00";
@@ -86,24 +70,24 @@ function inputPercentage() {
     else {
     document.querySelector(".tip-amount-value").innerHTML = billCustomTip.toFixed(2);
     }
-    calculate();  
-    } 
+    }
+    calculate();
 }
 
 function percentage(percentage){
     const customPercentage = document.querySelector(".custom").value = "";
-    const billValue = document.querySelector("#bill").value;  
+    const billValue = document.querySelector("#bill").value;
     const numberValue = document.querySelector("#number").value;
     if(numberValue > 0){
     const billClickedTip = (billValue * percentage / 100) / numberValue; 
-    if(isNaN(billClickedTip)){ 
-        document.querySelector(".tip-amount-value").innerHTML = "0.00";   
+    if(isNaN(billClickedTip)){
+        document.querySelector(".tip-amount-value").innerHTML = "0.00";
     }
     else {
         document.querySelector(".tip-amount-value").innerHTML = billClickedTip.toFixed(2);
     }
-    calculate() 
-    }     
+    calculate()
+    }
 }
 
 function checkDecimals(billValue){
