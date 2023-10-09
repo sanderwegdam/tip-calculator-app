@@ -41,8 +41,38 @@ function checkInput() {
             numberOfPeople.style.borderColor = "";
             numberOfPeople.style.outline = "none";
         }
+
+        const percentageButtons = document.querySelectorAll(".tip-button");
+        // Voeg een klikgebeurtenislistener toe aan elke knop
+        percentageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              // Verwijder de klasse "button-active" van alle knoppen
+              percentageButtons.forEach(btn => {
+                btn.classList.remove('button-active');
+              });
+              // Voeg de klasse "button-active" toe aan de geklikte knop
+              this.classList.add('button-active');
+              const percentage = parseFloat(this.value);
+              percentageClick(percentage);
+            });
+        });
+
         inputPercentage();
 }
+
+const percentageButtons = document.querySelectorAll(".tip-button");
+bill.addEventListener("input", calculate);
+numberOfPeople.addEventListener("input", calculate);
+const customPercentageInput = document.querySelector(".custom");
+customPercentageInput.addEventListener("input", inputPercentage);
+
+  // Voeg een inputgebeurtenislistener toe aan het aangepaste percentage-invoerveld
+  customPercentageInput.addEventListener("input", function() {
+    // Verwijder de klasse "button-active" van alle knoppen als er tekst wordt ingevoerd
+    percentageButtons.forEach(btn => {
+      btn.classList.remove('button-active');
+    });
+  });
 
 function calculate(){
     const tipAmountValue = document.querySelector(".tip-amount-value").innerHTML;
@@ -59,10 +89,9 @@ function calculate(){
 function inputPercentage() {
     const newBill = bill.value;
     const customPercentage = document.querySelector(".custom").value;
+    console.log(customPercentage);
     const numberValue = document.querySelector("#number").value;
     if(numberValue > 0){
-    console.log(customPercentage);
-    console.log(newBill);
     const billCustomTip = (customPercentage * newBill / 100) / numberValue;
     if(isNaN(billCustomTip)){
         document.querySelector(".tip-amount-value").innerHTML = "0.00";
@@ -74,7 +103,8 @@ function inputPercentage() {
     calculate();
 }
 
-function percentage(percentage){
+function percentageClick(percentage){
+    console.log(percentage);
     const customPercentage = document.querySelector(".custom").value = "";
     const billValue = document.querySelector("#bill").value;
     const numberValue = document.querySelector("#number").value;

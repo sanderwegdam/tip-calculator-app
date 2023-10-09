@@ -25,11 +25,11 @@
           onkeyup="checkInput();" />
         <p class="select-tip">Select Tip %</p>
         <div class="buttons">
-          <button onclick="percentage(5)">5%</button>
-          <button onclick="percentage(10)">10%</button>
-          <button onclick="percentage(15)">15%</button>
-          <button onclick="percentage(25)">25%</button>
-          <button onclick="percentage(50)">50%</button>
+          <button value="5" class="tip-button">5%</button>
+          <button value="10" class="tip-button">10%</button>
+          <button value="15" class="tip-button">15%</button>
+          <button value="25" class="tip-button">25%</button>
+          <button value="50" class="tip-button">50%</button>
           <input type="number" id="custom" class="custom" placeholder="Custom" maxlength="3" onkeyup="inputPercentage()"
             name="custom" value="Custom" oninput="limitInputLength(this, 3);"/>
         </div>

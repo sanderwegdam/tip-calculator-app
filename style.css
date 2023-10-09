@@ -139,6 +139,12 @@ button:focus, button:active {
     cursor: pointer;
 }
 
+.button-active {
+    background-color: var(--Strong-cyan);
+    color: var(--Very-dark-cyan);
+    cursor: pointer;
+}
+
 .custom {
     background-color: var(--Very-light-grayish-cyan);
     color: var(--Very-dark-cyan);
