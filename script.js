@@ -29,7 +29,6 @@ function checkInput() {
     }
 
     if(numberOfPeople.value < 1){
-        document.querySelector(".total-person-value").innerHTML = "0.00";
         numberOfPeopleZero.innerHTML = "can't be zero";
         numberOfPeople.style.borderColor = "red";
     }
@@ -113,12 +112,13 @@ percentageClick();
 
 function calculate(){
     const tipAmountValue = document.querySelector(".tip-amount-value").innerHTML;
-    const amount = (parseFloat(bill.value) / parseFloat(numberOfPeople.value) + parseFloat(tipAmountValue));
     console.log("check = " + typeof amount);
-    if(isNaN(amount)){
+    if(numberOfPeople.value == 0){
         document.querySelector(".total-person-value").innerHTML = "0.00";
+        tipAmountValue = document.querySelector(".tip-amount-value").innerHTML = "0.00";
     }
     else{
+        const amount = (parseFloat(bill.value) / parseFloat(numberOfPeople.value) + parseFloat(tipAmountValue));
         document.querySelector(".total-person-value").innerHTML = amount.toFixed(2);
     }
 }
