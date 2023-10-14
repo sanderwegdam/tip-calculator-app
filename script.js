@@ -115,7 +115,7 @@ function calculate(){
     console.log("check = " + typeof amount);
     if(numberOfPeople.value == 0){
         document.querySelector(".total-person-value").innerHTML = "0.00";
-        tipAmountValue = document.querySelector(".tip-amount-value").innerHTML = "0.00";
+        document.querySelector(".tip-amount-value").innerHTML = "0.00";
     }
     else{
         const amount = (parseFloat(bill.value) / parseFloat(numberOfPeople.value) + parseFloat(tipAmountValue));
