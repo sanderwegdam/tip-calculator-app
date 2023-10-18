@@ -8,131 +8,108 @@ const billZero = document.getElementById("billZero");
 const only2decimals = document.getElementById("only2decimals");
 const numberOfPeopleZero = document.getElementById("numberOfPeopleZero");
 
+// Functie om de ingevoerde waarden te controleren
 function checkInput() {
-    if(bill.value == 0){
+    if (bill.value == 0) {
         only2decimals.innerHTML = "";
         billZero.innerHTML = "can't be zero";
         bill.style.borderColor = "red";
     } else {
-            bill.style.borderColor = "";
+        bill.style.borderColor = "";
+        billZero.innerHTML = "";
+        console.log("INFO: Number received, processing..");
+        var regex = /^\d*(\.\d{0,2})?$/;
+        if (regex.test(bill.value)) {
             billZero.innerHTML = "";
-            console.log("INFO: Number received, processing..");
-            var regex = /^\d*(\.\d{0,2})?$/;
-            if(regex.test(bill.value)){
-                billZero.innerHTML = "";
-            }
-            else {
-                billZero.innerHTML = "";
-                only2decimals.innerHTML = "only 2 decimals";
-                bill.style.borderColor = "red";
-            }
+        } else {
+            billZero.innerHTML = "";
+            only2decimals.innerHTML = "only 2 decimals";
+            bill.style.borderColor = "red";
+        }
     }
 
-    if(numberOfPeople.value < 1){
+    if (numberOfPeople.value < 1) {
         numberOfPeopleZero.innerHTML = "can't be zero";
         numberOfPeople.style.borderColor = "red";
+    } else {
+        numberOfPeopleZero.innerHTML = "";
+        numberOfPeople.style.borderColor = "";
+        numberOfPeople.style.outline = "none";
     }
-    else {
-            numberOfPeopleZero.innerHTML = "";
-            numberOfPeople.style.borderColor = "";
-            numberOfPeople.style.outline = "none";
-        }
-        inputPercentage();
 }
 
+// Selecteer alle percentageknoppen en voeg event listeners toe
 const percentageButtons = document.querySelectorAll(".tip-button");
+const customPercentageInput = document.querySelector(".custom");
+const tipAmountValue = document.querySelector(".tip-amount-value");
+const totalPersonValue = document.querySelector(".total-person-value");
+
+percentageButtons.forEach(button => {
+    button.addEventListener("click", handlePercentageButtonClick);
+});
+
+customPercentageInput.addEventListener("input", () => {
+    percentageButtons.forEach(button => button.classList.remove('button-active'));
+    calculate();
+});
+
 bill.addEventListener("input", calculate);
 numberOfPeople.addEventListener("input", calculate);
-const customPercentageInput = document.querySelector(".custom");
-customPercentageInput.addEventListener("input", inputPercentage);
 
-  // Voeg een inputgebeurtenislistener toe aan het aangepaste percentage-invoerveld
-  customPercentageInput.addEventListener("input", function() {
-    // Verwijder de klasse "button-active" van alle knoppen als er tekst wordt ingevoerd
-    percentageButtons.forEach(button => {
-      button.classList.remove('button-active');
-    });
-  });
-
-function inputPercentage() {
-    const customPercentage = parseFloat(document.querySelector(".custom").value);
-    if (numberOfPeople.value > 0) {
-        let billTip;
-        if (!isNaN(customPercentage)) {
-            billTip = (customPercentage * parseFloat(bill.value) / 100) / numberOfPeople.value;
-        } else {
-            // Als er geen aangepast percentage is ingevoerd, gebruik een standaardpercentage
-            const percentage = parseFloat(document.querySelector(".button-active").value);
-            billTip = (percentage * parseFloat(bill.value) / 100) / numberOfPeople.value;
-        }
-        if (isNaN(billTip)) {
-            document.querySelector(".tip-amount-value").innerHTML = "0.00";
-        } else {
-            document.querySelector(".tip-amount-value").innerHTML = billTip.toFixed(2);
-        }
-    }
+// Event handler voor het klikken op een percentageknop
+function handlePercentageButtonClick() {
+    percentageButtons.forEach(button => button.classList.remove('button-active'));
+    this.classList.add('button-active');
+    customPercentageInput.value = "";
     calculate();
 }
 
-let percentage = 0;
-
-function percentageClick() {
-    // Deze functie zal worden gebruikt als event handler voor de knoppen
-    function buttonClickHandler() {
-        // Verwijder de klasse "button-active" van alle knoppen
-        percentageButtons.forEach(button => {
-            button.classList.remove('button-active');
-        });
-
-        // Voeg de klasse "button-active" toe aan de geklikte knop
-        this.classList.add('button-active');
-        percentage = parseFloat(this.value);
-        inputPercentage();
-
-        // Bereken de tip
-        if (numberOfPeople.value > 0) {
-            const billClickedTip = (parseFloat(bill.value) * percentage / 100) / numberOfPeople.value;
-            if (isNaN(billClickedTip)) {
-                document.querySelector(".tip-amount-value").innerHTML = "0.00";
-            } else {
-                document.querySelector(".tip-amount-value").innerHTML = billClickedTip.toFixed(2);
-            }
-        }
-        calculate();
+// Functie om de berekening uit te voeren
+function calculate() {
+    // Voer de validatie opnieuw uit om te controleren of zowel bill als numberOfPeople geldige waarden hebben
+    if (bill.value == 0 || numberOfPeople.value < 1) {
+        tipAmountValue.innerHTML = "0.00";
+        totalPersonValue.innerHTML = "0.00";
+        return;
     }
 
-    // Voeg de klikgebeurtenislistener toe aan elke knop
-    percentageButtons.forEach(button => {
-        button.addEventListener('click', buttonClickHandler);
-    });
-}
+    const billAmount = parseFloat(bill.value) || 0;
+    const people = parseFloat(numberOfPeople.value) || 1;
 
-// Roep de percentageClick-functie aan om de knoppen te initialiseren
-percentageClick();
-
-function calculate(){
-    const tipAmountValue = document.querySelector(".tip-amount-value").innerHTML;
-    console.log("check = " + typeof amount);
-    if(numberOfPeople.value == 0){
-        document.querySelector(".total-person-value").innerHTML = "0.00";
-        document.querySelector(".tip-amount-value").innerHTML = "0.00";
+    let percentage = 0;
+    if (customPercentageInput.value) {
+        percentage = parseFloat(customPercentageInput.value) || 0;
+    } else {
+        const selectedPercentageButton = document.querySelector(".button-active");
+        percentage = selectedPercentageButton ? parseFloat(selectedPercentageButton.value) : 0;
     }
-    else{
-        const amount = (parseFloat(bill.value) / parseFloat(numberOfPeople.value) + parseFloat(tipAmountValue));
-        document.querySelector(".total-person-value").innerHTML = amount.toFixed(2);
+
+    const tipAmount = (percentage * billAmount / 100) / people;
+    tipAmountValue.innerHTML = tipAmount.toFixed(2);
+
+    if (billAmount > 0 && people > 0) {
+        const totalAmount = (billAmount / people) + tipAmount;
+        totalPersonValue.innerHTML = totalAmount.toFixed(2);
+    } else {
+        totalPersonValue.innerHTML = "0.00";
     }
 }
 
-function checkDecimals(billValue){
-    only2decimals.innerHTML= "";
+// Initialisatie van de knoppen
+handlePercentageButtonClick(); // Initialiseer met de eerste knop
+
+// Functie om het aantal decimalen te controleren
+function checkDecimals(billValue) {
+    only2decimals.innerHTML = "";
     bill.style.borderColor = "";
     document.getElementById("bill").value = parseFloat(billValue).toFixed(2);
 }
 
-function reset(){    
+// Functie om alle invoervelden te resetten
+function reset() {
     bill.value = "0";
     numberOfPeople.value = "0";
-    custom.value = ""
+    custom.value = "";
     document.querySelector(".tip-amount-value").innerHTML = "0.00";
     document.querySelector(".total-person-value").innerHTML = "0.00";
     numberOfPeopleZero.innerHTML = "";
@@ -144,6 +121,7 @@ function reset(){
     });
 }
 
+// Functie om de lengte van de invoer te beperken
 function limitInputLength(inputElement, maxLength) {
     if (inputElement.value.length > maxLength) {
         inputElement.value = inputElement.value.slice(0, maxLength);

@@ -158,6 +158,10 @@ button:focus, button:active {
     font-family: 'Space Mono', sans-serif;
 }
 
+.custom::placeholder{
+    text-align: center;
+}
+
 .custom:hover {
     border: 2px solid var(--Strong-cyan);
     cursor: pointer;
